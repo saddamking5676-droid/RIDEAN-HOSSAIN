@@ -1,0 +1,1835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FERI WALA | Premium Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <style>
+        :root {
+            --primary-dark: #0a0a0a;
+            --secondary-dark: #111111;
+            --accent-gold: #d4af37;
+            --accent-gold-light: #f4e8c1;
+            --text-light: #f5f5f5;
+            --text-gray: #aaaaaa;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --success-green: #2ed573;
+            --error-red: #ff4757;
+            --warning-orange: #ffa502;
+            --info-blue: #1e90ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--primary-dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease;
+        }
+
+        .loader-text {
+            font-size: 2.5rem;
+            color: var(--accent-gold);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .loader-text::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--primary-dark);
+            animation: loading 2.5s ease forwards;
+        }
+
+        @keyframes loading {
+            0% { left: 0; }
+            100% { left: 100%; }
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            text-decoration: none;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .logo span {
+            color: var(--text-light);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            position: relative;
+            transition: color 0.3s ease;
+            padding: 0.5rem 0;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-gold);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(212, 175, 55, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 40% 80%, rgba(212, 175, 55, 0.08) 0%, transparent 40%);
+            z-index: -1;
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-gray);
+            margin-bottom: 3rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* Magnetic Button */
+        .magnetic-btn {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background-color: transparent;
+            border: 2px solid var(--accent-gold);
+            color: var(--accent-gold);
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            z-index: 1;
+            letter-spacing: 1px;
+        }
+
+        .magnetic-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-light) 100%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+            z-index: -1;
+        }
+
+        .magnetic-btn:hover {
+            color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .magnetic-btn:hover::before {
+            transform: translateX(0);
+        }
+
+        /* Portfolio Section */
+        .portfolio-section {
+            padding: 8rem 5%;
+            background-color: var(--secondary-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            text-align: center;
+            margin-bottom: 5rem;
+            color: var(--text-light);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+        }
+
+        .portfolio-content {
+            display: flex;
+            align-items: center;
+            gap: 5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .owner-image {
+            flex: 1;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            position: relative;
+            transition: transform 0.5s ease;
+        }
+
+        .owner-image:hover {
+            transform: translateY(-10px);
+        }
+
+        .owner-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .owner-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .owner-info {
+            flex: 1;
+        }
+
+        .owner-name {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-gold);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+        }
+
+        .owner-title {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--text-gray);
+            font-weight: 300;
+        }
+
+        .owner-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: var(--text-light);
+        }
+
+        /* Products Section */
+        .products-section {
+            padding: 8rem 5%;
+            position: relative;
+        }
+
+        .products-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.15);
+            border-color: var(--accent-gold);
+        }
+
+        .product-card:hover::before {
+            opacity: 1;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-name {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .product-description {
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .buy-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-light) 100%);
+            color: var(--primary-dark);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+        }
+
+        .buy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Checkout Modal */
+        .checkout-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .checkout-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .checkout-form {
+            background-color: var(--secondary-dark);
+            padding: 3rem;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .checkout-form::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+        }
+
+        .form-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--accent-gold);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            color: var(--text-light);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.1);
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .submit-btn, .cancel-btn {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-light) 100%);
+            color: var(--primary-dark);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .cancel-btn {
+            background-color: transparent;
+            color: var(--text-light);
+            border: 1px solid var(--glass-border);
+        }
+
+        .cancel-btn:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-color: var(--accent-gold);
+        }
+
+        /* Settings Section */
+        .settings-section {
+            padding: 8rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .settings-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .settings-tab {
+            padding: 1rem 2rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .settings-tab:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .settings-tab.active {
+            background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-light) 100%);
+            color: var(--primary-dark);
+            border-color: var(--accent-gold);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
+        }
+
+        .settings-panel {
+            display: none;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .settings-panel.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .panel-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--accent-gold);
+            text-align: center;
+        }
+
+        .panel-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .setting-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+
+        .setting-card:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-5px);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-gold);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-title i {
+            font-size: 1.3rem;
+        }
+
+        /* Payment Settings */
+        .payment-account {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            border: 1px solid var(--glass-border);
+        }
+
+        .payment-icon {
+            font-size: 2rem;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .bkash { color: #E2136E; }
+        .nagad { color: #F8A61C; }
+        .rocket { color: #5D2D91; }
+        .bank { color: var(--success-green); }
+
+        .payment-details {
+            flex: 1;
+        }
+
+        .payment-name {
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 0.3rem;
+        }
+
+        .payment-number {
+            color: var(--accent-gold);
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+
+        .add-btn {
+            width: 100%;
+            padding: 1rem;
+            background: transparent;
+            border: 2px dashed var(--glass-border);
+            border-radius: 10px;
+            color: var(--text-gray);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .add-btn:hover {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+        }
+
+        /* Order Management */
+        .order-list {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .order-item {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            border: 1px solid var(--glass-border);
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .order-id {
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        .order-status {
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-pending {
+            background: rgba(255, 165, 2, 0.1);
+            color: var(--warning-orange);
+        }
+
+        .status-paid {
+            background: rgba(46, 213, 115, 0.1);
+            color: var(--success-green);
+        }
+
+        .status-completed {
+            background: rgba(30, 144, 255, 0.1);
+            color: var(--info-blue);
+        }
+
+        /* Admin Settings */
+        .security-card {
+            background: rgba(255, 71, 87, 0.05);
+            border: 1px solid rgba(255, 71, 87, 0.2);
+        }
+
+        .recovery-code {
+            background: rgba(212, 175, 55, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            font-family: monospace;
+            color: var(--accent-gold);
+            margin: 1rem 0;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 3rem 5%;
+            background-color: var(--secondary-dark);
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .copyright {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .portfolio-content {
+                flex-direction: column;
+                gap: 3rem;
+            }
+            
+            .hero-title {
+                font-size: 3.5rem;
+            }
+            
+            .section-title {
+                font-size: 2.8rem;
+            }
+            
+            .settings-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .owner-name {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .settings-tabs {
+                flex-direction: column;
+            }
+            
+            .settings-tab {
+                text-align: center;
+            }
+            
+            .checkout-form {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .owner-name {
+                font-size: 2rem;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .settings-panel {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="loader-text">FERI WALA</div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="#" class="logo">FERI<span>WALA</span></a>
+        <div class="nav-links">
+            <a href="#home" class="nav-link">Home</a>
+            <a href="#portfolio" class="nav-link">Portfolio</a>
+            <a href="#products" class="nav-link">Products</a>
+            <a href="#settings" class="nav-link">Settings</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1 class="hero-title" data-aos="fade-up">Crafting Excellence,<br>Defining Luxury</h1>
+            <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">A premium brand by RIDEAN HOSSAIN</p>
+            <a href="#products" class="magnetic-btn" data-aos="fade-up" data-aos-delay="400">Explore Collection</a>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio-section" id="portfolio">
+        <h2 class="section-title" data-aos="fade-up">The Visionary</h2>
+        <div class="portfolio-content">
+            <div class="owner-image" data-aos="fade-right">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="RIDEAN HOSSAIN">
+            </div>
+            <div class="owner-info" data-aos="fade-left">
+                <h3 class="owner-name">RIDEAN HOSSAIN</h3>
+                <p class="owner-title">Founder & Creative Director</p>
+                <p class="owner-description">With a passion for excellence and an eye for detail, RIDEAN HOSSAIN has built FERI WALA into a symbol of luxury and sophistication. His visionary approach combines traditional craftsmanship with modern aesthetics to create timeless pieces that redefine elegance.</p>
+                <p class="owner-description">Under his leadership, FERI WALA has become synonymous with quality, innovation, and unparalleled customer experience in the luxury market.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section" id="products">
+        <h2 class="section-title" data-aos="fade-up">Exclusive Collection</h2>
+        <div class="products-grid" id="products-container">
+            <!-- Products will be loaded here by JavaScript -->
+        </div>
+    </section>
+
+    <!-- Checkout Modal -->
+    <div class="checkout-modal" id="checkout-modal">
+        <div class="checkout-form">
+            <h3 class="form-title">Complete Your Purchase</h3>
+            <form id="checkout-form">
+                <div class="form-group">
+                    <label class="form-label" for="customer-name">Full Name</label>
+                    <input type="text" id="customer-name" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="customer-phone">Phone Number</label>
+                    <input type="tel" id="customer-phone" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="customer-address">Delivery Address</label>
+                    <textarea id="customer-address" class="form-input" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="product-name">Product</label>
+                    <input type="text" id="product-name" class="form-input" readonly>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn">Place Order</button>
+                    <button type="button" class="cancel-btn" id="cancel-checkout">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Settings Section -->
+    <section class="settings-section" id="settings">
+        <h2 class="section-title" data-aos="fade-up">Website Settings</h2>
+        
+        <div class="settings-tabs" id="settings-tabs">
+            <div class="settings-tab active" data-tab="brand">Brand Settings</div>
+            <div class="settings-tab" data-tab="owner">Owner Settings</div>
+            <div class="settings-tab" data-tab="payment">Payment Settings</div>
+            <div class="settings-tab" data-tab="admin">Admin Settings</div>
+            <div class="settings-tab" data-tab="orders">Order Management</div>
+            <div class="settings-tab" data-tab="security">Security</div>
+        </div>
+
+        <!-- Brand Settings -->
+        <div class="settings-panel active" id="brand-panel">
+            <h3 class="panel-title">Brand Settings</h3>
+            <p class="panel-subtitle">Customize your brand identity</p>
+            
+            <div class="settings-grid">
+                <div class="setting-card">
+                    <h4 class="card-title"><i class="fas fa-crown"></i> Brand Identity</h4>
+                    <div class="form-group">
+                        <label class="form-label">Brand Name</label>
+                        <input type="text" id="brand-name" class="form-input" placeholder="FERI WALA">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Tagline</label>
+                        <input type="text" id="brand-tagline" class="form-input" placeholder="Crafting Excellence, Defining Luxury">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Copyright Text</label>
+                        <input type="text" id="brand-copyright" class="form-input" placeholder="© 2023 FERI WALA. All rights reserved.">
+                    </div>
+                    <button class="submit-btn" id="save-brand">Save Brand Settings</button>
+                </div>
+
+                <div class="setting-card">
+                    <h4 class="card-title"><i class="fas fa-palette"></i> Color Scheme</h4>
+                    <div class="form-group">
+                        <label class="form-label">Primary Color</label>
+                        <input type="color" id="primary-color" class="form-input" value="#d4af37">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Accent Color</label>
+                        <input type="color" id="accent-color" class="form-input" value="#f4e8c1">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Background Color</label>
+                        <input type="color" id="bg-color" class="form-input" value="#0a0a0a">
+                    </div>
+                    <button class="submit-btn" id="save-colors">Save Colors</button>
+                </div>
+
+                <div class="setting-card">
+                    <h4 class="card-title"><i class="fas fa-home"></i> Homepage Content</h4>
+                    <div class="form-group">
+                        <label class="form-label">Hero Title</label>
+                        <textarea id="hero-title-input" class="form-input" rows="2" placeholder="Crafting Excellence, Defining Luxury"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Hero Subtitle</label>
+                        <textarea id="hero-subtitle-input" class="form-input" rows="2" placeholder="A premium brand by RIDEAN HOSSAIN"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Button Text</label>
+                        <input type="text" id="hero-btn-text" class="form-input" placeholder="Explore Collection">
+                    </div>
+                    <button class="submit-btn" id="save-homepage">Save Homepage</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Owner Settings -->
+        <div class="settings-panel" id="owner-panel">
+            <h3 class="panel-title">Owner Settings</h3>
+            <p class="panel-subtitle">Customize owner information</p>
+            
+            <div class="settings-grid">
+                <div class="setting-card">
+                    <h4 class="card-title"><i class="fas fa-user"></i> Personal Information</h4>
+                    <div class="form-group">
+                        <label class="form-label">Owner Name</label>
+                        <input type="text" id="owner-name-input" class="form-input" placeholder="RIDEAN HOSSAIN">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Owner Title</label>
+                        <input type="text" id="owner-title-input" class="form-input" placeholder="Founder & Creative Director">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" id="owner-email" class="form-input" placeholder="contact@feriwala.com">
+                    </div>
+                    <button class="submit-btn" id="save-owner-info">Save Personal Info</button>
+                </div>
+
+                <div class="setting-card">
+                    <h4 class="card-title"><i class="fas fa-image"></i> Profile Image</h4>
+                    <div class="form-group">
+                        <label class="form-label">Image URL</label>
+                        <input type="text" id="owner-image-url" class="form-input" placeholder="https://example.com/photo.jpg">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Upload Image</label>
+                        <input type="file" id="owner-image-upload" class="form-input" accept="image/*">
+                    </div>
+                    <div class="image-preview" id="owner-image-preview"></div>
+                    <button class="submit-btn" id="save-owner-image">Save Image</button>
+                </div>
+
+                <div class="setting-card">
+                    <h4 class="card-title"><i class="fas fa-file-alt"></i> Biography</h4>
+                    <div class="form-group">
+                        <label class="form-label">Description 1</label>
+                        <textarea id="owner-desc1" class="form-input" rows="3" placeholder="First paragraph about you..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Description 2</label>
+                        <textarea id="owner-desc2" class="form-input" rows="3" placeholder="Second paragraph about you..."></textarea>
+                    </div>
+                    <button class="submit-btn" id="save-biography">Save Biography</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Payment Settings -->
+        <div class="settings-panel" id="payment-panel">
+            <h3 class="panel-title">Payment Settings</h3>
+            <p class="panel-subtitle">Manage payment methods and accounts</p>
+            
+            <div class="settings-grid">
+                <div class="setting-card">
+                    <h4 class="card-title"><i class="fas fa-mobile-alt"></i> Mobile Banking</h4>
+                    <div id="mobile-payments">
+                        <!-- Mobile payment accounts will be loaded here -->
+                    </div>
+                    <button class="add-btn" id="add-mobile-payment">
+                        <i class="fas fa-plus"></i> Add Mobile Payment Account
+                    </button>
+                </div>
+
+                <div class="setting-card">
+                    <h4 class="card-title"><i class="fas fa-university"></i> Bank Accounts</h4>
+                    <div id="bank-accounts">
+                        <!-- Bank accounts will be loaded here -->
+                    </div>
+                    <button class="add-btn" id="add-bank-account">
+                        <i class="fas fa-plus"></i> Add Bank Account
+                    </button>
+                </div>
+
+                <div class="setting-card">
+                    <h4 class="card-title"><i class="fas fa-cog"></i> Payment Configuration</h4>
+                    <div class="form-group">
+                        <label class="form-label">Default Payment Method</label>
+                        <select id="default-payment" class="form-input">
+                            <option value="bkash">bKash</option>
+                            <option value="nagad">Nagad</option>
+                            <option value="rocket">Rocket</option>
+                            <option value="bank">Bank Transfer</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Payment Instructions</label>
+                        <textarea id="payment-instructions" class="form-input" rows="4" placeholder="Enter payment instructions for customers..."></textarea>
+                    </div>
+                    <button class="submit-btn" id="save-payment-config">Save Configuration</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Settings -->
+        <div class="settings-panel" id="admin-panel">
+            <h3 class="panel-title">Admin Settings</h3>
+            <p class="panel-subtitle">Manage admin access and controls</p>
+            
+            <div class="settings-grid">
+                <div class="setting-card security-card">
+                    <h4 class="card-title"><i class="fas fa-shield-alt"></i> Security Settings</h4>
+                    <div class="form-group">
+                        <label class="form-label">Admin Password</label>
+                        <input type="password" id="admin-password" class="form-input" placeholder="Enter new password">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Confirm Password</label>
+                        <input type="password" id="admin-password-confirm" class="form-input" placeholder="Confirm new password">
+                    </div>
+                    <div class="recovery-code" id="recovery-code-display">
+                        Recovery Code: ABCD-1234-EF56
+                    </div>
+                    <button class="submit-btn" id="save-admin-password">Update Password</button>
+                </div>
+
+                <div class="setting-card">
+                    <h4 class="card-title"><i class="fas fa-users-cog"></i> Admin Controls</h4>
+                    <div class="form-group">
+                        <label class="form-label">Auto Logout Time (minutes)</label>
+                        <input type="number" id="logout-time" class="form-input" value="30" min="5" max="240">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Login Attempts</label>
+                        <input type="number" id="login-attempts" class="form-input" value="3" min="1" max="10">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">
+                            <input type="checkbox" id="two-factor" style="margin-right: 10px;">
+                            Enable Two-Factor Authentication
+                        </label>
+                    </div>
+                    <button class="submit-btn" id="save-admin-controls">Save Controls</button>
+                </div>
+
+                <div class="setting-card">
+                    <h4 class="card-title"><i class="fas fa-history"></i> Session Management</h4>
+                    <div class="form-group">
+                        <label class="form-label">Active Sessions</label>
+                        <div class="session-list" id="session-list">
+                            <div class="session-item">
+                                <span>Current Session</span>
+                                <span class="status-pending">Active</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="cancel-btn" id="logout-all" style="width: 100%; margin-top: 1rem;">
+                        <i class="fas fa-sign-out-alt"></i> Logout All Sessions
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Order Management -->
+        <div class="settings-panel" id="orders-panel">
+            <h3 class="panel-title">Order Management</h3>
+            <p class="panel-subtitle">View and manage customer orders</p>
+            
+            <div class="order-list" id="order-list">
+                <!-- Orders will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Security Settings -->
+        <div class="settings-panel" id="security-panel">
+            <h3 class="panel-title">Security Center</h3>
+            <p class="panel-subtitle">Advanced security configurations</p>
+            
+            <div class="settings-grid">
+                <div class="setting-card security-card">
+                    <h4 class="card-title"><i class="fas fa-key"></i> Password Recovery</h4>
+                    <div class="form-group">
+                        <label class="form-label">Recovery Email</label>
+                        <input type="email" id="recovery-email" class="form-input" placeholder="recovery@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Security Question</label>
+                        <select id="security-question" class="form-input">
+                            <option value="pet">What was your first pet's name?</option>
+                            <option value="school">What was your first school?</option>
+                            <option value="city">In what city were you born?</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Answer</label>
+                        <input type="text" id="security-answer" class="form-input" placeholder="Your answer">
+                    </div>
+                    <button class="submit-btn" id="save-recovery">Save Recovery Settings</button>
+                </div>
+
+                <div class="setting-card security-card">
+                    <h4 class="card-title"><i class="fas fa-lock"></i> Data Protection</h4>
+                    <div class="form-group">
+                        <label class="form-label">
+                            <input type="checkbox" id="auto-backup" style="margin-right: 10px;">
+                            Enable Auto Backup
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Backup Frequency</label>
+                        <select id="backup-frequency" class="form-input">
+                            <option value="daily">Daily</option>
+                            <option value="weekly" selected>Weekly</option>
+                            <option value="monthly">Monthly</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Last Backup</label>
+                        <input type="text" id="last-backup" class="form-input" readonly value="Never">
+                    </div>
+                    <button class="submit-btn" id="backup-now">Backup Now</button>
+                </div>
+
+                <div class="setting-card security-card">
+                    <h4 class="card-title"><i class="fas fa-exclamation-triangle"></i> Security Actions</h4>
+                    <button class="cancel-btn" id="reset-settings" style="width: 100%; margin-bottom: 1rem;">
+                        <i class="fas fa-redo"></i> Reset All Settings
+                    </button>
+                    <button class="cancel-btn" id="export-data" style="width: 100%; margin-bottom: 1rem;">
+                        <i class="fas fa-download"></i> Export All Data
+                    </button>
+                    <button class="cancel-btn" id="clear-cache" style="width: 100%;">
+                        <i class="fas fa-trash"></i> Clear Cache
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-logo">FERI WALA</div>
+        <p class="copyright">© 2023 FERI WALA. All rights reserved. | Crafted with excellence by RIDEAN HOSSAIN</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Preloader
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            setTimeout(() => {
+                preloader.style.opacity = '0';
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 800);
+            }, 1500);
+        });
+
+        // Settings Tabs
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.settings-tab');
+            const panels = document.querySelectorAll('.settings-panel');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Remove active class from all tabs and panels
+                    tabs.forEach(t => t.classList.remove('active'));
+                    panels.forEach(p => p.classList.remove('active'));
+                    
+                    // Add active class to clicked tab and corresponding panel
+                    this.classList.add('active');
+                    document.getElementById(`${tabId}-panel`).classList.add('active');
+                });
+            });
+            
+            // Initialize products
+            initializeProducts();
+            initializeSettings();
+            loadOrders();
+            loadPaymentAccounts();
+        });
+
+        // Product Management
+        let products = JSON.parse(localStorage.getItem('feriWalaProducts')) || [
+            {
+                id: 1,
+                name: "Luxe Timepiece",
+                price: 1250,
+                image: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80",
+                description: "Elegant gold watch with precision movement and diamond accents."
+            },
+            {
+                id: 2,
+                name: "Gold Cufflinks",
+                price: 450,
+                image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+                description: "Handcrafted 18k gold cufflinks with intricate detailing."
+            },
+            {
+                id: 3,
+                name: "Leather Portfolio",
+                price: 680,
+                image: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=772&q=80",
+                description: "Premium leather portfolio with gold embossed logo."
+            },
+            {
+                id: 4,
+                name: "Silk Pocket Square",
+                price: 120,
+                image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=736&q=80",
+                description: "Handwoven silk pocket square with gold thread accents."
+            }
+        ];
+
+        function initializeProducts() {
+            const container = document.getElementById('products-container');
+            container.innerHTML = '';
+            
+            products.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.setAttribute('data-aos', 'fade-up');
+                card.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-name">${product.name}</h3>
+                        <p class="product-price">$${product.price}</p>
+                        <p class="product-description">${product.description}</p>
+                        <button class="buy-btn" data-id="${product.id}">Buy Now</button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+            
+            // Add buy button event listeners
+            document.querySelectorAll('.buy-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    const product = products.find(p => p.id === productId);
+                    openCheckoutModal(product);
+                });
+            });
+        }
+
+        // Checkout Modal
+        let currentProduct = null;
+
+        function openCheckoutModal(product) {
+            currentProduct = product;
+            document.getElementById('product-name').value = product.name;
+            document.getElementById('checkout-modal').classList.add('active');
+        }
+
+        document.getElementById('cancel-checkout').addEventListener('click', function() {
+            document.getElementById('checkout-modal').classList.remove('active');
+            document.getElementById('checkout-form').reset();
+        });
+
+        document.getElementById('checkout-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('customer-name').value;
+            const phone = document.getElementById('customer-phone').value;
+            const address = document.getElementById('customer-address').value;
+            
+            // Save order
+            const order = {
+                id: 'ORD' + Date.now(),
+                product: currentProduct.name,
+                price: currentProduct.price,
+                customer: name,
+                phone: phone,
+                address: address,
+                date: new Date().toLocaleString(),
+                status: 'pending'
+            };
+            
+            let orders = JSON.parse(localStorage.getItem('feriWalaOrders')) || [];
+            orders.push(order);
+            localStorage.setItem('feriWalaOrders', JSON.stringify(orders));
+            
+            alert(`Thank you ${name}! Your order for "${currentProduct.name}" has been placed. We will contact you at ${phone}.`);
+            
+            document.getElementById('checkout-modal').classList.remove('active');
+            this.reset();
+            loadOrders();
+        });
+
+        // Settings Management
+        function initializeSettings() {
+            // Load saved settings
+            const settings = JSON.parse(localStorage.getItem('feriWalaSettings')) || {};
+            
+            // Populate form fields
+            if (settings.brand) {
+                document.getElementById('brand-name').value = settings.brand.name || '';
+                document.getElementById('brand-tagline').value = settings.brand.tagline || '';
+                document.getElementById('brand-copyright').value = settings.brand.copyright || '';
+                document.getElementById('hero-title-input').value = settings.brand.heroTitle || '';
+                document.getElementById('hero-subtitle-input').value = settings.brand.heroSubtitle || '';
+                document.getElementById('hero-btn-text').value = settings.brand.buttonText || '';
+            }
+            
+            if (settings.owner) {
+                document.getElementById('owner-name-input').value = settings.owner.name || '';
+                document.getElementById('owner-title-input').value = settings.owner.title || '';
+                document.getElementById('owner-email').value = settings.owner.email || '';
+                document.getElementById('owner-desc1').value = settings.owner.desc1 || '';
+                document.getElementById('owner-desc2').value = settings.owner.desc2 || '';
+                document.getElementById('owner-image-url').value = settings.owner.image || '';
+            }
+            
+            // Add save event listeners
+            document.getElementById('save-brand').addEventListener('click', saveBrandSettings);
+            document.getElementById('save-owner-info').addEventListener('click', saveOwnerSettings);
+            document.getElementById('save-biography').addEventListener('click', saveBiography);
+            document.getElementById('save-admin-password').addEventListener('click', saveAdminPassword);
+        }
+
+        function saveBrandSettings() {
+            const settings = JSON.parse(localStorage.getItem('feriWalaSettings')) || {};
+            settings.brand = {
+                name: document.getElementById('brand-name').value,
+                tagline: document.getElementById('brand-tagline').value,
+                copyright: document.getElementById('brand-copyright').value,
+                heroTitle: document.getElementById('hero-title-input').value,
+                heroSubtitle: document.getElementById('hero-subtitle-input').value,
+                buttonText: document.getElementById('hero-btn-text').value
+            };
+            
+            localStorage.setItem('feriWalaSettings', JSON.stringify(settings));
+            alert('Brand settings saved successfully!');
+            
+            // Update website in real-time
+            document.querySelector('.logo').textContent = settings.brand.name;
+            document.querySelector('.footer-logo').textContent = settings.brand.name;
+            document.querySelector('.hero-title').textContent = settings.brand.heroTitle;
+            document.querySelector('.hero-subtitle').textContent = settings.brand.heroSubtitle;
+            document.querySelector('.magnetic-btn').textContent = settings.brand.buttonText;
+            document.querySelector('.copyright').textContent = settings.brand.copyright;
+        }
+
+        function saveOwnerSettings() {
+            const settings = JSON.parse(localStorage.getItem('feriWalaSettings')) || {};
+            settings.owner = {
+                name: document.getElementById('owner-name-input').value,
+                title: document.getElementById('owner-title-input').value,
+                email: document.getElementById('owner-email').value
+            };
+            
+            localStorage.setItem('feriWalaSettings', JSON.stringify(settings));
+            alert('Owner information saved successfully!');
+            
+            // Update website in real-time
+            document.querySelector('.owner-name').textContent = settings.owner.name;
+            document.querySelector('.owner-title').textContent = settings.owner.title;
+        }
+
+        function saveBiography() {
+            const settings = JSON.parse(localStorage.getItem('feriWalaSettings')) || {};
+            settings.owner = settings.owner || {};
+            settings.owner.desc1 = document.getElementById('owner-desc1').value;
+            settings.owner.desc2 = document.getElementById('owner-desc2').value;
+            
+            localStorage.setItem('feriWalaSettings', JSON.stringify(settings));
+            alert('Biography saved successfully!');
+            
+            // Update website in real-time
+            document.querySelectorAll('.owner-description')[0].textContent = settings.owner.desc1;
+            document.querySelectorAll('.owner-description')[1].textContent = settings.owner.desc2;
+        }
+
+        function saveAdminPassword() {
+            const password = document.getElementById('admin-password').value;
+            const confirm = document.getElementById('admin-password-confirm').value;
+            
+            if (password !== confirm) {
+                alert('Passwords do not match!');
+                return;
+            }
+            
+            if (password.length < 6) {
+                alert('Password must be at least 6 characters long!');
+                return;
+            }
+            
+            const settings = JSON.parse(localStorage.getItem('feriWalaSettings')) || {};
+            settings.admin = settings.admin || {};
+            settings.admin.password = btoa(password); // Simple encoding
+            
+            localStorage.setItem('feriWalaSettings', JSON.stringify(settings));
+            alert('Admin password updated successfully!');
+            
+            // Clear password fields
+            document.getElementById('admin-password').value = '';
+            document.getElementById('admin-password-confirm').value = '';
+        }
+
+        // Order Management
+        function loadOrders() {
+            const orders = JSON.parse(localStorage.getItem('feriWalaOrders')) || [];
+            const container = document.getElementById('order-list');
+            
+            if (orders.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: var(--text-gray); padding: 2rem;">No orders yet</p>';
+                return;
+            }
+            
+            container.innerHTML = '';
+            orders.forEach(order => {
+                const orderItem = document.createElement('div');
+                orderItem.className = 'order-item';
+                orderItem.innerHTML = `
+                    <div class="order-header">
+                        <div>
+                            <span class="order-id">${order.id}</span>
+                            <div style="font-size: 0.9rem; color: var(--text-gray);">${order.date}</div>
+                        </div>
+                        <span class="order-status status-${order.status}">${order.status}</span>
+                    </div>
+                    <div>
+                        <strong>Product:</strong> ${order.product}<br>
+                        <strong>Price:</strong> $${order.price}<br>
+                        <strong>Customer:</strong> ${order.customer}<br>
+                        <strong>Phone:</strong> ${order.phone}<br>
+                        <strong>Address:</strong> ${order.address}
+                    </div>
+                    <div style="margin-top: 1rem; display: flex; gap: 0.5rem;">
+                        <button class="submit-btn" style="padding: 0.5rem 1rem; font-size: 0.9rem;" onclick="updateOrderStatus('${order.id}', 'paid')">
+                            Mark as Paid
+                        </button>
+                        <button class="cancel-btn" style="padding: 0.5rem 1rem; font-size: 0.9rem;" onclick="updateOrderStatus('${order.id}', 'completed')">
+                            Mark Completed
+                        </button>
+                        <button class="cancel-btn" style="padding: 0.5rem 1rem; font-size: 0.9rem; background: var(--error-red);" onclick="deleteOrder('${order.id}')">
+                            Delete
+                        </button>
+                    </div>
+                `;
+                container.appendChild(orderItem);
+            });
+        }
+
+        window.updateOrderStatus = function(orderId, status) {
+            let orders = JSON.parse(localStorage.getItem('feriWalaOrders')) || [];
+            const orderIndex = orders.findIndex(o => o.id === orderId);
+            
+            if (orderIndex !== -1) {
+                orders[orderIndex].status = status;
+                localStorage.setItem('feriWalaOrders', JSON.stringify(orders));
+                loadOrders();
+                alert(`Order ${orderId} marked as ${status}`);
+            }
+        };
+
+        window.deleteOrder = function(orderId) {
+            if (confirm('Are you sure you want to delete this order?')) {
+                let orders = JSON.parse(localStorage.getItem('feriWalaOrders')) || [];
+                orders = orders.filter(o => o.id !== orderId);
+                localStorage.setItem('feriWalaOrders', JSON.stringify(orders));
+                loadOrders();
+                alert('Order deleted successfully');
+            }
+        };
+
+        // Payment Accounts
+        function loadPaymentAccounts() {
+            const accounts = JSON.parse(localStorage.getItem('feriWalaPaymentAccounts')) || [
+                {
+                    type: 'mobile',
+                    name: 'bKash',
+                    number: '017XXXXXXXX',
+                    icon: 'fas fa-mobile-alt',
+                    color: 'bkash'
+                },
+                {
+                    type: 'mobile',
+                    name: 'Nagad',
+                    number: '017XXXXXXXX',
+                    icon: 'fas fa-wallet',
+                    color: 'nagad'
+                },
+                {
+                    type: 'bank',
+                    name: 'Bank Transfer',
+                    number: 'Account: 123456789\nBank: XXXX Bank\nBranch: Main',
+                    icon: 'fas fa-university',
+                    color: 'bank'
+                }
+            ];
+            
+            const mobileContainer = document.getElementById('mobile-payments');
+            const bankContainer = document.getElementById('bank-accounts');
+            
+            mobileContainer.innerHTML = '';
+            bankContainer.innerHTML = '';
+            
+            accounts.forEach((account, index) => {
+                const accountDiv = document.createElement('div');
+                accountDiv.className = 'payment-account';
+                accountDiv.innerHTML = `
+                    <div class="payment-icon ${account.color}">
+                        <i class="${account.icon}"></i>
+                    </div>
+                    <div class="payment-details">
+                        <div class="payment-name">${account.name}</div>
+                        <div class="payment-number">${account.number.replace(/\n/g, '<br>')}</div>
+                    </div>
+                    <button class="cancel-btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" onclick="editPaymentAccount(${index})">
+                        Edit
+                    </button>
+                `;
+                
+                if (account.type === 'mobile') {
+                    mobileContainer.appendChild(accountDiv);
+                } else {
+                    bankContainer.appendChild(accountDiv);
+                }
+            });
+            
+            localStorage.setItem('feriWalaPaymentAccounts', JSON.stringify(accounts));
+        }
+
+        window.editPaymentAccount = function(index) {
+            const accounts = JSON.parse(localStorage.getItem('feriWalaPaymentAccounts')) || [];
+            const account = accounts[index];
+            
+            const newName = prompt('Enter account name:', account.name);
+            const newNumber = prompt('Enter account number/details:', account.number);
+            
+            if (newName && newNumber) {
+                accounts[index].name = newName;
+                accounts[index].number = newNumber;
+                localStorage.setItem('feriWalaPaymentAccounts', JSON.stringify(accounts));
+                loadPaymentAccounts();
+                alert('Account updated successfully!');
+            }
+        };
+
+        document.getElementById('add-mobile-payment').addEventListener('click', function() {
+            const name = prompt('Enter mobile payment name (e.g., bKash, Nagad):');
+            const number = prompt('Enter mobile number:');
+            
+            if (name && number) {
+                const accounts = JSON.parse(localStorage.getItem('feriWalaPaymentAccounts')) || [];
+                accounts.push({
+                    type: 'mobile',
+                    name: name,
+                    number: number,
+                    icon: 'fas fa-mobile-alt',
+                    color: 'bkash'
+                });
+                
+                localStorage.setItem('feriWalaPaymentAccounts', JSON.stringify(accounts));
+                loadPaymentAccounts();
+                alert('Mobile payment account added successfully!');
+            }
+        });
+
+        document.getElementById('add-bank-account').addEventListener('click', function() {
+            const name = prompt('Enter bank name:');
+            const number = prompt('Enter bank account details (account number, branch, etc.):');
+            
+            if (name && number) {
+                const accounts = JSON.parse(localStorage.getItem('feriWalaPaymentAccounts')) || [];
+                accounts.push({
+                    type: 'bank',
+                    name: name,
+                    number: number,
+                    icon: 'fas fa-university',
+                    color: 'bank'
+                });
+                
+                localStorage.setItem('feriWalaPaymentAccounts', JSON.stringify(accounts));
+                loadPaymentAccounts();
+                alert('Bank account added successfully!');
+            }
+        });
+
+        // Image Upload
+        document.getElementById('owner-image-upload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('owner-image-url').value = e.target.result;
+                    const preview = document.getElementById('owner-image-preview');
+                    preview.innerHTML = `<img src="${e.target.result}" style="max-width: 200px; border-radius: 10px; margin-top: 10px;">`;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById('save-owner-image').addEventListener('click', function() {
+            const imageUrl = document.getElementById('owner-image-url').value;
+            if (imageUrl) {
+                const settings = JSON.parse(localStorage.getItem('feriWalaSettings')) || {};
+                settings.owner = settings.owner || {};
+                settings.owner.image = imageUrl;
+                
+                localStorage.setItem('feriWalaSettings', JSON.stringify(settings));
+                
+                // Update website image
+                document.querySelector('.owner-image img').src = imageUrl;
+                alert('Owner image saved successfully!');
+            } else {
+                alert('Please enter or upload an image first.');
+            }
+        });
+
+        // Magnetic Button Effect
+        document.addEventListener('DOMContentLoaded', function() {
+            const magneticBtn = document.querySelector('.magnetic-btn');
+            
+            if (magneticBtn) {
+                magneticBtn.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const deltaX = (x - centerX) / centerX;
+                    const deltaY = (y - centerY) / centerY;
+                    
+                    const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+                    const maxDistance = 1;
+                    
+                    if (distance < maxDistance) {
+                        const moveX = deltaX * 10;
+                        const moveY = deltaY * 10;
+                        
+                        this.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                    }
+                });
+                
+                magneticBtn.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translate(0, 0)';
+                });
+            }
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
